@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const BootcampSchema = new mongoose.Schema({
-  Description: {
+  name: {
     type: String,
     required: [true, "Please add a name"],
     unique: true,
@@ -12,13 +12,13 @@ const BootcampSchema = new mongoose.Schema({
   description: {
     type: String,
     required: [true, "Please add a description"],
-    maxlength: [50, "Description can not be more than 50 characters"],
+    maxlength: [500, "Description can not be more than 500 characters"],
   },
   website: {
     type: String,
     match: [
-      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)]/,
-      "Please use a vald URL with HTTP or HTTPS",
+      /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+      "Please use a valid URL with HTTP or HTTPS",
     ],
   },
   email: {
@@ -37,11 +37,11 @@ const BootcampSchema = new mongoose.Schema({
     type: {
       type: String,
       enum: ["Point"],
-      required: true,
+      // required: true,
     },
     coordinates: {
       type: [Number],
-      required: true,
+      // required: true,
       index: "2dsphere",
     },
     formattedAddress: String,
